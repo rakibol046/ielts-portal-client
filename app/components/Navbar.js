@@ -11,6 +11,9 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const currentPath = usePathname();
   // console.log("path = ",currentPath);
+  const [user, setUser] = useState(false);
+  const loginSystem = false;
+
 
   const menuItem = [
     {
@@ -74,13 +77,14 @@ export default function Navbar() {
           <div className="flex items-center space-x-4">
             {/* Home icon using the imported SVG */}
             <Link href="/" className="rounded-md flex items-center">
-              <Image
+              {/* <Image
                 src={home}
                 alt="Home"
                 width={32}
                 height={32}
                 className="w-8 h-8 rounded-full"
-              />
+              /> */}
+              <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="M180-120q-25 0-42.5-17.5T120-180v-76l160-142v278H180Zm140 0v-160h320v160H320Zm360 0v-328L509-600l121-107 190 169q10 9 15 20.5t5 24.5v313q0 25-17.5 42.5T780-120H680ZM120-310v-183q0-13 5-25t15-20l300-266q8-8 18.5-11.5T480-819q11 0 21.5 3.5T520-804l80 71-480 423Z"/></svg>
             </Link>
 
             {/* Menu items */}
@@ -141,77 +145,63 @@ export default function Navbar() {
 
           {/* Right side of the navbar */}
           <div className="hidden lg:flex items-center space-x-4">
-            {/* Notification Bell */}
-            <div className="relative cursor-pointer">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path d="M10 2a6 6 0 016 6v5.586l1.707 1.707A1 1 0 0116.293 16H3.707a1 1 0 01-.707-1.707L5 13.586V8a6 6 0 016-6zm0 12a3 3 0 01-3-3h6a3 3 0 01-3 3zm1 1h-2v1h2v-1z" />
-              </svg>
-              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full px-1">
-                2
-              </span>
-            </div>
+            
 
             {/* Profile section */}
+           { loginSystem ? user? 
             <div className="flex items-center space-x-2 cursor-pointer relative group">
-              {/* Profile image using next/image */}
-              
-                <Image
-                  src={home}
-                  alt="Profile"
-                  width={32}
-                  height={32}
-                  className="w-8 h-8 rounded-full"
+            {/* Profile image using next/image */}
+            
+            <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="M226-262q59-39.67 121-60.83Q409-344 480-344t133.33 21.17q62.34 21.16 121.34 60.83 41-49.67 59.83-103.67T813.33-480q0-141-96.16-237.17Q621-813.33 480-813.33t-237.17 96.16Q146.67-621 146.67-480q0 60.33 19.16 114.33Q185-311.67 226-262Zm253.88-184.67q-58.21 0-98.05-39.95Q342-526.58 342-584.79t39.96-98.04q39.95-39.84 98.16-39.84 58.21 0 98.05 39.96Q618-642.75 618-584.54t-39.96 98.04q-39.95 39.83-98.16 39.83ZM479.73-80q-83.1 0-156.18-31.5-73.09-31.5-127.15-85.83-54.07-54.34-85.23-127.23Q80-397.45 80-480.33q0-82.88 31.5-155.78Q143-709 197.33-763q54.34-54 127.23-85.5T480.33-880q82.88 0 155.78 31.5Q709-817 763-763t85.5 127Q880-563 880-480.18q0 82.83-31.5 155.67Q817-251.67 763-197.33 709-143 635.91-111.5 562.83-80 479.73-80Z"/></svg>
+              {/* Profile name */}
+              <span className="hidden sm:inline-block text-sm">
+                <Link href="/account">Md. Rakibul Islam</Link>
+              </span>
+              <svg
+                className="ml-1 w-4 h-4"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clipRule="evenodd"
                 />
-                {/* Profile name */}
-                <span className="hidden sm:inline-block text-sm">
-                  <Link href="/account">Md. Rakibul Islam</Link>
-                </span>
-                <svg
-                  className="ml-1 w-4 h-4"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              {/* Dropdown content as card design */}
-              <div className="absolute hidden group-hover:block bg-white text-black py-4 min-w-80 shadow-lg rounded-md right-0 top-full mt-1">
-                <div className="p-4">
-                  <h2 className="font-bold text-lg">Md. Rakibul Islam</h2>
-                  <p className="text-gray-600">mdrakibolislam046@yahoo.com</p>
-                  <hr className="my-2 border-gray-300" />
-                  <div className="mt-2">
-                    <Link
-                      href="#"
-                      className="block py-2 hover:bg-gray-100 rounded-md"
-                    >
-                      Dashboard
-                    </Link>
-                    <Link
-                      href="#"
-                      className="block py-2 hover:bg-gray-100 rounded-md"
-                    >
-                      My Profile
-                    </Link>
-                  </div>
-                  <hr className="my-2 border-gray-300" />
+              </svg>
+            {/* Dropdown content as card design */}
+            <div className="absolute hidden group-hover:block bg-white text-black py-4 min-w-80 shadow-lg rounded-md right-0 top-full mt-1">
+              <div className="p-4">
+                <h2 className="font-bold text-lg">Md. Rakibul Islam</h2>
+                <p className="text-gray-600">mdrakibolislam046@yahoo.com</p>
+                <hr className="my-2 border-gray-300" />
+                <div className="mt-2">
                   <Link
                     href="#"
                     className="block py-2 hover:bg-gray-100 rounded-md"
                   >
-                    Logout
+                    Dashboard
+                  </Link>
+                  <Link
+                    href="#"
+                    className="block py-2 hover:bg-gray-100 rounded-md"
+                  >
+                    My Profile
                   </Link>
                 </div>
+                <hr className="my-2 border-gray-300" />
+                <Link
+                  href="#"
+                  className="block py-2 hover:bg-gray-100 rounded-md"
+                >
+                  Logout
+                </Link>
               </div>
             </div>
+          </div>
+          :
+          <Link href="/account/login" className="rounded-md flex items-center"> Log In</Link>
+          : ""
+          }
           </div>
 
           {/* Hamburger Icon for Mobile */}

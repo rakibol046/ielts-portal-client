@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 const Header = () => {
   return (
     <div>
-      <div className="logo p-3 lg:px-28 lg:py-3">
+      <div className="logo p-3 lg:px-28 lg:py-3 bg-white">
         <Image
           src={logo}
           alt="Picture of the author"

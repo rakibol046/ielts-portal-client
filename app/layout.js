@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${fredoka.className} text-secondary`}
+        className={`${fredoka.className} text-secondary bg-gray-100`}
       >
         <Header />
         <main className="">{children}</main>
